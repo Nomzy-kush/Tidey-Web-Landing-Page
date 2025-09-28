@@ -1,15 +1,22 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [
-    "./src/**/*.{js,jsx,ts,tsx}", // scan your React files
-    "./public/index.html"
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // scan all React components
+    "./index.html"                 // your actual HTML file
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
-    screens: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: "425px", // new breakpoint
+      }
+    },
   },
   plugins: [],
-}
+};
+
+
+

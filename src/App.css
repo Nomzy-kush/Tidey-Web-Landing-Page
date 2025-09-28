@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
-/* Base navbar styles */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem; /* 24px */
 
+.marquee {
+  overflow-x: hidden;
+  width: 100%;
 }
+.marquee-track {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  min-width: 100%;
+}
+
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px; /* wider scrollbar so it’s visible */
@@ -33,57 +40,1867 @@
   background-color: #0496c2; /* darker shade on hover */
 }
 
+/* Prevent hero background from overflowing */
+.hero-section {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* shift left by half so it loops */
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 30s linear infinite; /* adjust duration to control speed */
+}
 
 
 
 
-/* Hide text links on smaller screens but keep buttons */
-/* 1024px */
-@media (max-width: 1024px) {
-  .navbar-right {
+/* Prevent horizontal scroll on 320px screens */
+@media screen and (max-width: 320px) {
+  html, body {
+    max-width: 100%;
+  }
+
+  .marquee {
+    overflow-x: hidden;   /* keeps content within viewport */
+    width: 100%;          /* matches screen width */
+  }
+
+  .marquee-track {
+    width: 100%;          /* no overflow */
+    display: flex;
+    gap: 1rem;
+    animation: none;      /* stop auto-scroll if it causes push */
+  }
+
+
+  /* 320px fixes */
+    .navbar-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem; /* add some padding */
+      gap: 1rem; /* space between stacked items */
+      overflow-x: hidden; /* prevent horizontal scroll */
+      max-width: 100vw;
+    }
+  
+    .navbar-left {
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .navbar-logo {
+      height: 3rem; 
+    }
+    .navbar-title {
+      font-size: 2rem;
+    }
+  
+    .navbar-right {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+  
+    .navbar-link span {
+      font-size: 1.25rem; /* bigger to match logo/title */
+      font-weight: 600;
+    }
+  
+    .navbar-buttons {
+      flex-direction: column; /* stack vertically */
+      gap: 0.75rem;
+      width: 100%;
+      margin-top: 1rem;
+      align-items: center; /* center buttons */
+    }
+  
+    .navbar-btn {
+      width: 85%; /* make buttons balanced */
+      max-width: 250px; /* avoid stretching too far */
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.9rem;
+    }
+
+
+  /* ============================= */
+/* Hero Section Responsive Fixes */
+/* ============================= */
+
+  .hero-heading {
+    font-size: 2rem; /* ~28px, still big for visibility */
+    line-height: 2.2rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem; /* ~16px for readability */
+    line-height: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* stack vertically */
+    gap: 0.75rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 85%; /* balanced width */
+    max-width: 260px;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    justify-content: center;
+  }
+
+  .hero-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .hero-btn-text {
+    font-size: 1rem;
+  }
+
+
+/* Prevent horizontal overflow globally */
+.services-section {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+/* Fix cards overflowing on 320px */
+  .services-section {
+    padding-left: 0.5rem; /* smaller padding */
+    padding-right: 0.5rem;
+  }
+
+  .services-grid {
+    display: flex;
+    flex-direction: column; /* stack properly */
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem;
+    box-sizing: border-box; /* prevents stretching */
+  }
+
+  .service-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .services-heading {
+    font-size: 1.5rem; /* smaller but still visible */
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .service-desc {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+
+/* WHY CHOOSE SECTION @ 320px */
+  .why-choose-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .why-choose-heading {
+    font-size: 1.5rem; /* smaller but still visible */
+    line-height: 1.2;
+  }
+
+  .why-choose-subheading {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+  }
+
+  .why-choose-grid {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .why-choose-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .why-choose-title {
+    font-size: 1rem;
+  }
+
+  .why-choose-text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .why-choose-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+/* SERVICE AREAS SECTION @ 320px */
+  .service-areas-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .service-areas-grid {
+    display: flex;
+    flex-direction: column; /* stack vertically */
     gap: 1.5rem;
   }
-}
 
-/* 768px */
-@media (max-width: 768px) {
-  .navbar-right {
-    gap: 1rem;
+  .service-map {
+    height: 250px; /* reduce height for small screens */
   }
-}
 
-/* 425px */
-@media (max-width: 425px) {
-  .navbar-buttons a {
-    padding: 0.3rem 0.6rem;
+  .service-areas-text {
+    height: auto; /* let text adjust naturally */
   }
-  .navbar-buttons img {
-    width: 20px;
-    height: 20px;
-  }
-}
 
-/* 375px */
-@media (max-width: 375px) {
-  .navbar-title {
-    font-size: 16px;
+  .service-areas-heading {
+    font-size: 1.3rem; /* smaller heading */
+    line-height: 1.2;
+    text-align: center;
   }
-  .navbar-logo img {
-    width: 48px;
-  }
-}
 
-/* 320px */
+  .service-areas-subheading {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .service-areas-list {
+    font-size: 1rem; /* still readable */
+    max-height: 180px; /* keep scroll manageable */
+    overflow-y: scroll;
+    padding-right: 0.5rem;
+  }
+
+  .service-areas-list li {
+    font-size: 0.95rem;
+  }
+
+
+/* # FAQ SECTION @ 320px */ 
 @media (max-width: 320px) {
-  .navbar-title {
-    font-size: 14px;
+  .faq-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
+
+  .faq-heading {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .faq-item {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .faq-question {
+    font-size: 0.9rem;
+  }
+
+  .faq-answer {
+    font-size: 0.8rem;
+  }
+
+  #FAQs {
+    max-width: 100%;
+    overflow-x: hidden; /* absolutely kill horizontal scroll */
+  }
+}
+
+
+/* Testimonials Section @ 320px */
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+
+/* 320px fixes */
+  .testimonials-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 1.5rem; /* smaller but still visible */
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .testimonial-card {
+    min-width: 280px;  /* slightly smaller than screen */
+    max-width: 300px;  /* prevents overflow */
+    padding: 1rem;     /* reduce padding for small screen */
+  }
+
+  .animate-marquee {
+    width: 100vw; /* prevent pushing layout sideways */
+  }
+
+
+/* FOOTER MEDIA QUERIES - 320px */
+  .footer {
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+    text-align: left;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .footer-links ul li,
+  .footer-support ul li {
+    font-size: 0.85rem;
+  }
+
+  .footer-icons a svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+}
+
+
+/* End of 320px fixes */
+
+
+/* ============================= */
+/* 321px – 375px: Services Fix   */
+/* ============================= */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .services-section {
+    padding: 2rem 1rem; /* tighten padding for small screens */
+  }
+
+  .services-heading {
+    font-size: 1.75rem; /* ~28px */
+    margin-bottom: 1rem;
+  }
+
+  .services-subheading {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem; /* add breathing room from edges */
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* force single column */
+    gap: 1.25rem;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+    border-radius: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .service-image img {
+    height: 10rem; /* ~160px */
+    object-fit: cover;
+  }
+
+  .service-text {
+    padding: 1rem;
+  }
+
+  .service-title {
+    font-size: 1.25rem; /* ~20px */
+    margin-bottom: 0.5rem;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+
+/* ============================= */
+/* 321px – 375px Custom Styling  */
+/* ============================= */
+
+/* ---------- Why Choose Section ---------- */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .why-choose-section {
+    padding: 2rem 1rem;
+    text-align: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+
+  }
+
+  .why-choose-heading {
+    font-size: 1.75rem; /* ~28px */
+    margin-bottom: 1rem;
+  }
+
+  .why-choose-subheading {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: 1fr; /* stack cards */
+    gap: 1.25rem;
+  }
+
+  .why-choose-card {
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .why-choose-icon {
+    margin-left: auto;
+    margin-right: auto;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .why-choose-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-choose-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* ---------- Service Areas Section ---------- */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .service-areas-section {
+    padding: 2rem 1rem;
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr; /* stack map above text */
+    gap: 2rem;
+  }
+
+  .service-map {
+    height: 250px; /* reduce map height for mobile */
+  }
+
+  .service-areas-text {
+    height: auto;
+  }
+
+  .service-areas-heading {
+    font-size: 1.5rem; /* ~24px */
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .service-areas-subheading {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .service-areas-list {
+    font-size: 0.95rem;
+    max-height: 200px; /* scrollable but not overwhelming */
+    padding-right: 0.5rem;
+  }
+}
+
+/* Service Areas Section - Mobile Fix (321px to 375px) */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .service-areas-section {
+    width: 100vw; /* fill screen */
+    padding: 2rem 1rem; /* adjust spacing */
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr; /* stack map and text vertically */
+    gap: 1.5rem;
+  }
+
+  .service-map {
+    width: 100%;
+    height: 300px; /* smaller height for mobile */
+    border-radius: 10px;
+  }
+
+  .service-areas-text {
+    height: auto; /* allow it to expand naturally */
+    padding: 0.5rem;
+  }
+
+  .service-areas-heading {
+    font-size: 1.5rem; /* smaller heading */
+    line-height: 1.2;
+  }
+
+  .service-areas-subheading {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .service-areas-list {
+    font-size: 0.95rem;
+    max-height: 200px; /* keep it scrollable but compact */
+  }
+}
+
+
+/* FAQ Section - Mobile Fix (321px to 375px) */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .faq-section {
+    width: 100vw; /* force full screen */
+    padding: 2rem 1rem; /* reduce horizontal padding */
+    background-size: cover; /* ensure background fills */
+    background-position: center;
+  }
+
+  .faq-inner {
+    max-width: 100%; /* allow full width on small screens */
+    padding: 0 0.5rem;
+  }
+
+  .faq-heading {
+    font-size: 1.5rem; /* reduce from 4xl */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .faq-list {
+    max-height: 300px; /* reduce scroll height */
+    font-size: 0.95rem;
+    padding-right: 0.5rem; /* lighter scroll padding */
+  }
+
+  .faq-item {
+    padding: 0.75rem; /* tighter padding */
+    border-radius: 8px;
+  }
+
+  .faq-question {
+    font-size: 0.95rem; /* smaller text */
+    width: 80%; /* give space for + / - toggle */
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Testimonials Section - Mobile (321px to 375px) */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .testimonials-section {
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 1.5rem; /* smaller heading */
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-card {
+    min-width: 280px; /* tighter card for small phones */
+    max-width: 320px;
+    padding: 1rem;
+    flex-direction: column; /* stack image & text vertically */
+    text-align: center;
+    align-items: center;
+  }
+
+  .testimonial-card img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.75rem;
+  }
+
+  .testimonial-card h4 {
+    font-size: 1rem;
+  }
+
+  .testimonial-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+
+/* Footer Section - Mobile (321px to 375px) */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .footer {
+    padding: 2rem 1rem; /* tighter padding */
+    text-align: left; /* center all text */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr; /* stack all sections */
+    gap: 2rem; /* space between stacked sections */
+  }
+
+  .footer-title {
+    font-size: 1rem; /* smaller titles */
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .footer-links ul,
+  .footer-support ul {
+    font-size: 0.9rem;
+  }
+
+  .footer-icons {
+    justify-content: center; /* center icons on mobile */
+    gap: 1.5rem; /* more breathing room between icons */
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+}
+
+/* 📱 Navbar adjustments for screens between 376px and 425px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .navbar-container {
+    flex-direction: column; /* keep stacked for better spacing */
+    gap: 1rem; /* space between logo/title and nav */
+    padding: 0.75rem 1rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .navbar-left {
+    flex-direction: column; /* logo above title */
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .navbar-logo {
+    height: 3.5rem; /* slightly smaller logo */
+  }
+
+  .navbar-title {
+    font-size: 1.5rem; /* scale down from 2xl */
+  }
+
   .navbar-right {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .navbar-link span {
+    font-size: 0.95rem; /* slightly smaller nav links */
+  }
+
+  .navbar-buttons {
+    flex-direction: column;
+    width: 100%;
     gap: 0.5rem;
   }
-  .navbar-buttons a {
-    padding: 0.25rem 0.5rem;
+
+  .navbar-btn {
+    width: 100%; /* full width for buttons */
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  .navbar-btn img {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .navbar-btn-text {
+    font-size: 0.95rem;
   }
 }
+
+/* 📱 Services Section adjustments for 376px - 425px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .services-section {
+    padding: 3rem 1rem; /* tighter padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .services-heading {
+    font-size: 1.75rem; /* scale down from 4xl */
+    margin-bottom: 1rem;
+  }
+
+  .services-subheading {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* keep single column */
+    gap: 1.5rem; /* tighter gap */
+  }
+
+  .service-card {
+    flex-direction: column;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .service-image img {
+    height: 10rem; /* shorter image for balance */
+    object-fit: cover;
+  }
+
+  .service-text {
+    padding: 1rem;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* 📱 Why Choose Section adjustments for 376px - 425px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .why-choose-section {
+    padding: 3rem 1rem; /* reduce padding */
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .why-choose-heading {
+    font-size: 1.75rem; /* scale from 4xl */
+    margin-bottom: 1rem;
+  }
+
+  .why-choose-subheading {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: 1fr; /* keep single column */
+    gap: 1.5rem;
+  }
+
+  .why-choose-card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .why-choose-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-choose-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .why-choose-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* 📱 Service Areas Section adjustments for 376px - 425px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .service-areas-section {
+    padding: 3rem 1rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr; /* stack map and text vertically */
+    gap: 2rem;
+  }
+
+  .service-map {
+    height: 300px; /* reduce map height */
+    border-radius: 0.75rem;
+  }
+
+  .service-areas-text {
+    height: auto; /* allow content to expand naturally */
+    text-align: center; /* center headings for smaller screens */
+  }
+
+  .service-areas-heading {
+    font-size: 1.5rem; /* scale down from 3xl */
+    margin-bottom: 1rem;
+  }
+
+  .service-areas-subheading {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .service-areas-list {
+    max-height: 220px; /* keep list scrollable but compact */
+    font-size: 0.95rem;
+    text-align: left;
+    margin: 0 auto;
+    width: 90%; /* narrower list for breathing room */
+  }
+
+  .service-areas-list li {
+    display: flex;
+    align-items: center;
+  }
+
+  .service-areas-list span {
+    flex-shrink: 0;
+  }
+}
+
+
+/* 📱 FAQ Section adjustments for 376px - 426px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .faq-section {
+    padding: 3rem 1rem; /* reduce padding */
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .faq-heading {
+    font-size: 1.5rem; /* scale down from 4xl */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .faq-list {
+    max-height: 300px; /* shorter scrollable area */
+    padding-right: 0.5rem;
+  }
+
+  .faq-item {
+    padding: 0.75rem; /* tighter card padding */
+    border-radius: 0.5rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem; /* slightly smaller text */
+    width: 80%;
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+  }
+}
+
+/* 📱 Testimonials Section adjustments for 376px - 425px */
+@media (min-width: 376px) and (max-width: 425px) {
+  .testimonials-section {
+    padding: 3rem 1rem; /* reduce vertical + horizontal spacing */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 1.6rem; /* smaller than 4xl */
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+
+  .testimonial-card {
+    min-width: 280px;
+    max-width: 340px;
+    padding: 1rem; /* tighter spacing */
+    gap: 0.75rem;
+  }
+
+  .testimonial-card img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .testimonial-card h4 {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .testimonial-card .text-sm {
+    font-size: 0.8rem; /* role text */
+  }
+
+  /* Marquee adjustments */
+  .animate-marquee {
+    gap: 1rem; /* less spacing between cards */
+  }
+
+  .testimonial-avatar {
+    width: 3rem;  /* ~48px */
+    height: 3rem;
+  }
+}
+
+
+/* -----------------------------
+   Force vertical navbar
+   for screens 425px — 639px
+   ----------------------------- */
+   @media (min-width: 425px) and (max-width: 639px) {
+    /* Container: stacked + centered */
+    .navbar-container {
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 1rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      box-sizing: border-box !important;
+    }
+  
+    /* Left (logo + title) stacked and centered */
+    .navbar-left {
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      text-align: center !important;
+    }
+  
+    .navbar-logo {
+      height: 3.25rem !important;    /* ~52px */
+      max-width: 90% !important;
+    }
+  
+    .navbar-title {
+      font-size: 1.125rem !important; /* ~18px */
+      margin: 0 !important;
+    }
+  
+    /* Right: center nav links and stack them */
+    .navbar-right {
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      margin-top: 0.25rem !important;
+    }
+  
+    .navbar-link {
+      width: 100% !important;
+      text-align: center !important;
+      display: block !important;
+    }
+  
+    .navbar-link span {
+      display: inline-block !important;
+      font-size: 1rem !important;
+      padding: 0.25rem 0 !important;
+    }
+  
+    /* Buttons: full-width stacked, tappable */
+    .navbar-buttons {
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      align-items: center !important;
+      margin-top: 0.5rem !important;
+    }
+  
+    .navbar-btn {
+      width: 90% !important;
+      max-width: 340px !important;
+      padding: 0.6rem 1rem !important;
+      font-size: 1rem !important;
+      min-height: 44px !important; /* good tap target */
+      justify-content: center !important;
+    }
+  
+    .navbar-btn img {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
+  
+    /* Small helpers */
+    .navbar-title,
+    .navbar-link span,
+    .navbar-btn-text {
+      line-height: 1.1 !important;
+    }
+  }
+
+
+  /* -----------------------------
+   Services Section
+   for screens 425px — 639px
+   ----------------------------- */
+@media (min-width: 425px) and (max-width: 639px) {
+  /* Section spacing */
+  .services-section {
+    padding: 3rem 1rem; /* tighter padding */
+    text-align: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .services-heading {
+    font-size: 1.75rem;   /* ~28px */
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .services-subheading {
+    font-size: 1rem;      /* ~16px */
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 90%;
+  }
+
+  /* Grid: keep stacked cards */
+  .services-grid {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+
+  /* Card adjustments */
+  .service-card {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  .service-image img {
+    height: 10rem;  /* ~160px */
+    object-fit: cover;
+  }
+
+  .service-title {
+    font-size: 1.125rem; /* ~18px */
+    margin-bottom: 0.5rem;
+  }
+
+  .service-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+/* ========== WHY CHOOSE SECTION RESPONSIVE ========== */
+
+/* Target screens between 425px and 640px */
+@media (min-width: 425px) and (max-width: 640px) {
+  .why-choose-section {
+    padding: 3rem 1rem; /* reduce padding */
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .why-choose-heading {
+    font-size: 1.75rem; /* slightly smaller heading */
+    line-height: 2.25rem;
+  }
+
+  .why-choose-subheading {
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: 1fr; /* stack cards vertically */
+    gap: 1.5rem;
+  }
+
+  .why-choose-card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .why-choose-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 auto 0.75rem auto;
+  }
+
+  .why-choose-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-choose-text {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+  }
+}
+
+/* ========== SERVICE AREAS SECTION RESPONSIVE ========== */
+
+/* Target screens between 425px and 640px */
+@media (min-width: 425px) and (max-width: 639px) {
+  .service-areas-section {
+    padding: 3rem 1rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr; /* stack map & text vertically */
+    gap: 2rem;
+  }
+
+  .service-map {
+    height: 300px; /* reduce map height */
+    border-radius: 0.75rem;
+  }
+
+  .service-areas-text {
+    height: auto; /* let text content determine height */
+  }
+
+  .service-areas-heading {
+    font-size: 1.5rem; /* smaller heading */
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  .service-areas-subheading {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-areas-list {
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    max-height: 200px; /* scrollable but not too tall */
+    margin: 0; /* remove auto centering */
+    text-align: left; /* keep left aligned */
+  }
+
+  .service-areas-list li {
+    justify-content: flex-start; /* align bullets and text left */
+  }
+}
+
+/* ========== FAQ SECTION RESPONSIVE ========== */
+
+/* Target screens between 425px and 640px */
+@media (min-width: 425px) and (max-width: 639px) {
+  .faq-section {
+    padding: 3rem 1rem; /* tighter padding */
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .faq-heading {
+    font-size: 1.5rem; /* shrink heading size */
+    line-height: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    max-height: 300px; /* smaller scrollable height */
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    padding-right: 0.25rem;
+  }
+
+  .faq-item {
+    padding: 0.75rem; /* reduce padding inside items */
+    border-radius: 0.5rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem; /* shrink question text */
+    line-height: 1.4rem;
+    width: 80%; /* give icon a bit more space */
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* ========== TESTIMONIALS SECTION RESPONSIVE ========== */
+@media (min-width: 425px) and (max-width: 639px) {
+  .testimonials-section {
+    padding: 3rem 1rem; /* tighter padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-card {
+    min-width: 260px;  /* smaller min width */
+    max-width: 300px;  /* prevent overflow */
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px; /* smaller avatar */
+  }
+
+  .testimonial-card h4 {
+    font-size: 0.95rem;
+  }
+
+  .testimonial-card p {
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+  }
+}
+
+
+/* Media queries for small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  /* Navbar container */
+  .navbar-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.25rem; /* match sm:px-6 */
+    padding-right: 1.25rem;
+  }
+
+  /* Left section: logo + title */
+  .navbar-left {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 0.75rem; /* tighten spacing */
+  }
+
+  .navbar-logo {
+    height: 56px; /* ~sm:h-14 */
+  }
+
+  .navbar-title {
+    font-size: 1.25rem; /* ~sm:text-xl */
+  }
+
+  /* Right section: nav links + buttons */
+  .navbar-right {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    width: auto;
+  }
+
+  .navbar-link span {
+    font-size: 0.9rem; /* ~sm:text-sm */
+  }
+
+  .navbar-buttons {
+    flex-direction: row;
+    gap: 0.75rem;
+    width: auto;
+  }
+
+  .navbar-btn {
+    width: auto;
+    max-width: none;
+    padding: 0.6rem 1rem;
+  }
+
+  .navbar-btn-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Media queries for small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  /* Section container */
+  .services-section {
+    padding: 4rem 1.5rem; /* tighten px-6 to fit */
+    text-align: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Heading */
+  .services-heading {
+    font-size: 2rem; /* smaller than text-4xl */
+    margin-bottom: 1rem;
+  }
+
+  /* Subheading */
+  .services-subheading {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    max-width: 85%; /* shrink so it doesn’t stretch wide */
+  }
+
+  /* Grid */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cols at this size */
+    gap: 1.5rem;
+  }
+
+  /* Card */
+  .service-card {
+    border-radius: 0.75rem;
+  }
+
+  .service-image img {
+    height: 10rem; /* ~h-40 instead of h-48 */
+    object-fit: cover;
+  }
+
+  .service-title {
+    font-size: 1.125rem; /* ~text-lg */
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Media queries for small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  .why-choose-section {
+    padding: 4rem 1.5rem;
+    text-align: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .why-choose-heading {
+    font-size: 2rem; /* ~text-2xl */
+    margin-bottom: 1.25rem;
+  }
+
+  .why-choose-subheading {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    max-width: 85%; /* shrink width for tablets */
+  }
+
+  /* Grid */
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 1.5rem;
+  }
+
+  .why-choose-card {
+    padding: 1.25rem; /* less padding for smaller screens */
+    border-radius: 0.75rem;
+    text-align: left; /* keep icons/text aligned left */
+  }
+
+  .why-choose-icon {
+    width: 2.25rem; /* smaller icons */
+    height: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-choose-title {
+    font-size: 1.125rem; /* ~text-lg */
+    margin-bottom: 0.5rem;
+  }
+
+  .why-choose-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+
+/* Service Areas Section: Small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  .service-areas-section {
+    padding: 4rem 1.5rem; /* reduce vertical and horizontal padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr; /* stack map and list vertically */
+    gap: 2.5rem; /* space between map and list */
+  }
+
+  .service-map {
+    height: 300px; /* shorter map for tablet screens */
+  }
+
+  .service-areas-text {
+    height: auto; /* let text expand naturally */
+    text-align: center; /* center heading and paragraph */
+  }
+
+  .service-areas-heading {
+    font-size: 1.75rem; /* smaller heading */
+    margin-bottom: 1.5rem;
+  }
+
+  .service-areas-subheading {
+    font-size: 1rem; /* smaller paragraph */
+    margin-bottom: 1.5rem;
+  }
+
+  .service-areas-list {
+    max-height: 250px; /* reduce scrollable height */
+    font-size: 0.95rem;
+    justify-content: center; /* optional: center list items */
+  }
+
+  .service-areas-list li {
+    justify-content: flex-start; /* keep bullet left-aligned */
+  }
+}
+
+
+/* Testimonials Section: Small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  .testimonials-section {
+    padding: 4rem 1.5rem; /* slightly reduced padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .animate-marquee {
+    gap: 1rem; /* reduce gap between cards */
+  }
+
+  .testimonial-card {
+    min-width: 280px; /* smaller card width */
+    max-width: 320px;
+    padding: 1rem; /* slightly smaller padding */
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .testimonial-card h4 {
+    font-size: 1rem; /* smaller name text */
+  }
+
+  .testimonial-card p {
+    font-size: 0.875rem; /* smaller testimonial text */
+  }
+}
+
+
+
+
+/* FAQ Section: Small tablets (640px – 768px) */
+@media (min-width: 640px) and (max-width: 768px) {
+  .faq-section {
+    padding: 4rem 1.5rem; /* reduce vertical and horizontal padding */
+    text-align: center;
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .faq-heading {
+    font-size: 2rem; /* smaller heading */
+    margin-bottom: 2rem;
+  }
+
+  /* FAQ list container */
+  .faq-list {
+    max-height: 350px; /* slightly shorter for tablets */
+    padding-right: 1rem; /* ensure scroll bar fits */
+  }
+
+  /* Individual FAQ item */
+  .faq-item {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: left; /* keep Q/A text aligned */
+  }
+
+  .faq-question {
+    font-size: 1rem; /* smaller question font */
+    line-height: 1.4;
+    width: 80%; /* slightly narrower for icons */
+  }
+
+  .faq-answer {
+    font-size: 0.9rem; /* smaller answer font */
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .faq-item span {
+    font-size: 1.25rem; /* smaller + / − */
+  }
+}
+
+
+/* Navbar: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar-container {
+    flex-direction: row; /* row layout */
+    justify-content: space-between;
+    padding: 1rem 2rem; /* adjust padding */
+  }
+
+  .navbar-left {
+    flex-direction: row;
+    gap: 1.5rem; /* slightly more gap */
+    text-align: left;
+  }
+
+  .navbar-logo {
+    height: 3.5rem; /* adjust logo size */
+  }
+
+  .navbar-title {
+    font-size: 1.75rem; /* slightly smaller than desktop */
+  }
+
+  .navbar-right {
+    flex-direction: row;
+    gap: 2rem;
+    width: auto;
+    align-items: center;
+  }
+
+  .navbar-btn {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem; /* smaller button text */
+  }
+
+  .navbar-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Services Section: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-section {
+    padding: 3rem 2rem; /* adjust section padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .services-heading {
+    font-size: 2.5rem; /* slightly smaller heading */
+  }
+
+  .services-subheading {
+    font-size: 1rem; /* smaller subheading */
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 3 */
+    gap: 1.5rem; /* slightly smaller gap */
+  }
+
+  .service-card {
+    flex-direction: column;
+  }
+
+  .service-image img {
+    height: 10rem; /* slightly shorter images */
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+  }
+}
+
+/* Why Choose Section: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .why-choose-section {
+    padding: 4rem 2rem; /* adjust padding */
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .why-choose-heading {
+    font-size: 2.5rem; /* slightly smaller heading */
+  }
+
+  .why-choose-subheading {
+    font-size: 1rem; /* smaller subheading */
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 3 */
+    gap: 1.5rem;
+  }
+
+  .why-choose-card {
+    padding: 1.5rem; /* slightly smaller padding */
+  }
+
+  .why-choose-title {
+    font-size: 1.25rem; /* slightly smaller card titles */
+  }
+
+  .why-choose-text {
+    font-size: 0.875rem; /* slightly smaller card text */
+  }
+
+  .why-choose-icon {
+    width: 2.5rem;
+    height: 2.5rem; /* adjust icon size */
+  }
+}
+
+/* Service Areas Section: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-areas-section {
+    padding: 4rem 2rem; /* adjust padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .service-areas-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 2rem;
+  }
+
+  .service-map {
+    height: 350px; /* reduce map height for medium screens */
+  }
+
+  .service-areas-text {
+    height: auto; /* allow text section to adapt */
+    text-align: left;
+  }
+
+  .service-areas-heading {
+    font-size: 2rem; /* slightly smaller heading */
+  }
+
+  .service-areas-subheading {
+    font-size: 1rem; /* slightly smaller subheading */
+    margin-bottom: 1.5rem;
+  }
+
+  .service-areas-list {
+    font-size: 0.95rem;
+    max-height: 250px; /* adjust scrollable height */
+  }
+}
+
+
+/* FAQ Section: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .faq-section {
+    padding: 4rem 2rem; /* adjust vertical and horizontal padding */
+    background-position: center;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .faq-inner {
+    max-width: 700px; /* slightly narrower than desktop for tablets */
+  }
+
+  .faq-heading {
+    font-size: 2.5rem; /* smaller heading for tablet */
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    max-height: 300px; /* adjust height for tablet screens */
+    padding-right: 1rem; /* ensure scrollbar has space */
+  }
+
+  .faq-item {
+    padding: 1rem 1.25rem; /* slightly smaller padding */
+    font-size: 0.95rem; /* scale text */
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+  }
+}
+
+
+/* Testimonials Section: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .testimonials-section {
+    padding: 4rem 2rem; /* adjust vertical and horizontal padding */
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .testimonials-title {
+    font-size: 2.5rem; /* slightly smaller heading */
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-card {
+    min-width: 280px; /* slightly narrower cards */
+    max-width: 340px;
+    padding: 1rem;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .testimonial-card h4 {
+    font-size: 1rem;
+  }
+
+  .testimonial-card p {
+    font-size: 0.875rem; /* scale text for readability */
+  }
+
+  /* Marquee container adjustments */
+  .animate-marquee {
+    gap: 1rem; /* reduce gap slightly */
+  }
+}
+
+
+
+
+
 
 
