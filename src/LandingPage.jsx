@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css"
 import { motion, AnimatePresence } from "framer-motion";
 import { FiPlus, FiMinus } from "react-icons/fi";
-import { FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import mixpanel from "mixpanel-browser";
 import TiedyLogo from "../public/assets/images/favicon.png";
@@ -12,13 +13,47 @@ import HeroBackground from "../public/assets/images/Hero background.jpeg";
 import ClothesImg from "../public/assets/images/clothes.jpeg";
 import ShoesImg from "../public/assets/images/shoes.jpeg";
 import DuvetImg from "../public/assets/images/duvet.jpeg";
-import { Clock, Truck, ThumbsUp } from "lucide-react";
+import { Clock, Truck, ThumbsUp, ShoppingCart, Sparkles, CreditCard, Package, Bike } from "lucide-react";
 import CustomFaqList from "./components/CustomFaqList"; // adjust path if needed
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css"; // core styles
 import "swiper/css/autoplay"; // autoplay styles
+import OchukoImg from "../public/assets/images/CustomerImage1.jpg";
+import LarryImg from "../public/assets/images/Customer Image 2.jpg";
+import OnosImg from "../public/assets/images/CustomerImage3.png";
+import OnomeImg from "../public/assets/images/CustomerImage4.png";
 
+
+
+
+const steps = [
+  {
+    title: "Place Your Order",
+    desc: "Choose your laundromat, select the service you need, and place your order, all in a few taps.",
+    icon: <ShoppingCart className="w-10 h-10 text-[#06AED5]" />,
+  },
+  {
+    title: "We Pick Up",
+    desc: "A rider arrives at your doorstep to collect your laundry.",
+    icon: <Bike className="w-10 h-10 text-[#06AED5]" />,
+  },
+  {
+    title: "Expert Cleaning",
+    desc: "Your laundry is handled with care by our partner laundromats.",
+    icon: <Sparkles className="w-10 h-10 text-[#06AED5]" />,
+  },
+  {
+    title: "Make Payment",
+    desc: "When laundry is ready, laundromat sends price breakdown so you can make payment.",
+    icon: <CreditCard className="w-10 h-10 text-[#06AED5]" />,
+  },
+  {
+    title: "Delivery to Your Door",
+    desc: "Once ready and you are available, we deliver your clothes fresh, clean, and neatly packaged.",
+    icon: <Package className="w-10 h-10 text-[#06AED5]" />,
+  },
+];
 
 
 
@@ -113,6 +148,8 @@ export default function LandingPage() {
         "Yes. You can request contactless pickup/delivery through the app and leave items in a secure spot for our delivery partner.",
     },
   ];
+
+  
 
   /* ----------------------
      helper: track events safely
@@ -230,7 +267,7 @@ export default function LandingPage() {
         className="hero-subtext text-gray-200 mt-4 text-lg md:text-xl max-w-2xl mx-auto"
       >
         Get your laundry picked up, washed, dried, and delivered with just a
-        few taps. Choose same-day, 24-hour, 48-hour, or 3-4 day options.
+        few taps. Choose same-day, 24-hour, 48-hour, or 3-4 Laundromat options.
       </motion.p>
     </div>
 
@@ -275,14 +312,13 @@ export default function LandingPage() {
   <h3 className="services-heading text-4xl font-bold mb-6">We wash it all</h3>
 
   <p className="services-subheading text-gray-600 max-w-2xl mx-auto mb-12">
-    From everyday wear to specialty items, our expert team handles everything with care. 
-    We've got you covered, no matter the fabric or item.
+  From everyday wear to specialty items, our partner laundromats handle your laundry with care, no matter the fabric, we’ve got you covered.
   </p>
 
   <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {[
       {
-        title: "Clothes",
+        title: "Clothes, Bedsheets & Duvets",
         desc: "Shirts, pants, dresses, and more. We handle all types of clothing with care.",
         img: ClothesImg,
       },
@@ -292,7 +328,7 @@ export default function LandingPage() {
         img: ShoesImg,
       },
       {
-        title: "Bedsheets & Duvets",
+        title: "Pillows & Curtains",
         desc: "Drapes, sheers, and bedding. We clean and press your home textiles.",
         img: DuvetImg,
       },
@@ -322,6 +358,27 @@ export default function LandingPage() {
   </div>
 </section>
 
+
+{/* How it Works Section */}
+<section className="py-16 bg-gray-50" id="how-it-works">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+          How It Works
+        </h2>
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {steps.map((step, idx) => (
+            <div
+              key={idx}
+              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 text-center"
+            >
+              <div className="flex justify-center mb-4">{step.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="text-gray-600 text-sm">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
   
 
@@ -360,10 +417,10 @@ export default function LandingPage() {
       <div className="why-choose-card p-6 bg-white/10 rounded-lg text-left">
         <Truck className="why-choose-icon w-10 h-10 text-[#06AED5] mb-4" />
         <h4 className="why-choose-title text-xl font-semibold mb-2 text-white">
-          Free Pickup & Delivery
+          Fast Pickup & Delivery
         </h4>
         <p className="why-choose-text text-gray-200">
-          We come to you, saving you time and effort. Enjoy free pickup and
+          We come to you, saving you time and effort. Enjoy fast pickup and
           delivery on all orders.
         </p>
       </div>
@@ -375,7 +432,7 @@ export default function LandingPage() {
           Quality Guaranteed
         </h4>
         <p className="why-choose-text text-gray-200">
-          We use premium detergents and state-of-the-art equipment to ensure
+          We use premium cleaning agents and state-of-the-art equipment to ensure
           your clothes are cleaned to perfection.
         </p>
       </div>
@@ -490,43 +547,43 @@ export default function LandingPage() {
       <div className="flex animate-marquee gap-6">
         {[
           {
-            name: "Sarah M.",
+            name: "Julius B.",
             role: "Happy Customer",
-            text: "Washr has been a lifesaver! The app is easy to use, and the service is always reliable. My clothes come back perfectly clean and neatly folded.",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXtszU1pwBOtF-lWgJKTxmTcKuogT97SNyiWXu4WRSNe0mI0-a9mcX0IiKiIvPaEVNLvzO-AfYx7oUaWefm2X8urse_2qj0ln8N-Y9-wJDa0IXMq8ukrGvTsQq_Tynx8Gl3vj0QL14UmG93g_q3_vsREEACfKeC_nRYgWxAf77ZVwBLTpU-6OJ234w7AD7Xt7kH301N5U3Rm9TRd8r0ckecv6z3apArUl-at0j1ye7cjOWS9s54g2mQBo6d6vYZayCoWS4E1B6Cdfz",
+            text: "Yeah I'm glad I tried out your service. It was pretty amazing. I'm more fascinated about getting all my clothes back on the same day. Thank you",
+            img: TiedyLogo,
           },
           {
-            name: "David K.",
+            name: "Onome D.",
             role: "Happy Customer",
-            text: "I love the convenience of Washr. No more trips to the laundromat! Pickup and delivery are always on time, and the quality is excellent.",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuACmZ5fBwM08qvrbAbAXT9faBm3bApz_ZoQQYYE3ea-MYKcZKfGwXlXipfdqNaTkqgc31W1eJPLh-PVB-iZgr4ZaS0OSo_3GSXMR3U0MMfcZwR793AsoXBaP1ZM5lZDc5T-7TaIPN2vdHfulray1cdzeLWCgrgQQp-j_AqxQ2O_fV8QDd9vlbMoKFNXq7uW9u-M4beND5iTsFBk9M0ApDKvehr1KzFWohubAKzquUa_gKWuHG7ZGO5mpoDuk3DByDFsYb_QvGBMLH0-",
+            text: "I love the convenience of Tiedy. No more trips to the laundromat! Pickup and delivery are always on time, and the quality is excellent.",
+            img: OnomeImg,
           },
           {
-            name: "Emily L.",
+            name: "Ochuko O.",
             role: "Happy Customer",
-            text: "I was hesitant to try a laundry service, but Washr exceeded my expectations. The prices are reasonable, and the customer service is top-notch. Highly recommend!",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDbIh9gUOO8Pdlyaw9kaOCZZNn0sSEPZ6Z66_tQ7e_XK4P1F7Z08yWT4zWxqozdFs0puLjvkGogNIGcW3V5EuBlxX3gSUXMJu6qGtGhPLS5DerGcCywuomD5__AT5AFMLwyQ-3ZpJfnAiaKyUzptlSdoGFthMvCojqKDyxseOiIRmCqiBkrUq5X77CspmmwY_4x23IrJVv-cViPxIdiLwRmXcyndL2cw9Ej13Bslvkx_AfDN5L5S1VGbMVb1iQOwnlfS3-scaYLRprw",
+            text: "I was hesitant to try a laundry service, but Tiedy exceeded my expectations. The prices are reasonable, and the customer service is top-notch. Highly recommend!",
+            img: OchukoImg,
           },
         ]
           // duplicate array so it loops seamlessly
           .concat([
             {
-              name: "Sarah M.",
+              name: "Larry M.",
               role: "Happy Customer",
-              text: "Washr has been a lifesaver! The app is easy to use, and the service is always reliable. My clothes come back perfectly clean and neatly folded.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXtszU1pwBOtF-lWgJKTxmTcKuogT97SNyiWXu4WRSNe0mI0-a9mcX0IiKiIvPaEVNLvzO-AfYx7oUaWefm2X8urse_2qj0ln8N-Y9-wJDa0IXMq8ukrGvTsQq_Tynx8Gl3vj0QL14UmG93g_q3_vsREEACfKeC_nRYgWxAf77ZVwBLTpU-6OJ234w7AD7Xt7kH301N5U3Rm9TRd8r0ckecv6z3apArUl-at0j1ye7cjOWS9s54g2mQBo6d6vYZayCoWS4E1B6Cdfz",
+              text: "Tiedy has been a lifesaver! The app is easy to use, and the service is always reliable. My clothes come back perfectly clean and neatly folded.",
+              img: LarryImg,
             },
             {
-              name: "David K.",
+              name: "Lawrence C.",
               role: "Happy Customer",
-              text: "I love the convenience of Washr. No more trips to the laundromat! Pickup and delivery are always on time, and the quality is excellent.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuACmZ5fBwM08qvrbAbAXT9faBm3bApz_ZoQQYYE3ea-MYKcZKfGwXlXipfdqNaTkqgc31W1eJPLh-PVB-iZgr4ZaS0OSo_3GSXMR3U0MMfcZwR793AsoXBaP1ZM5lZDc5T-7TaIPN2vdHfulray1cdzeLWCgrgQQp-j_AqxQ2O_fV8QDd9vlbMoKFNXq7uW9u-M4beND5iTsFBk9M0ApDKvehr1KzFWohubAKzquUa_gKWuHG7ZGO5mpoDuk3DByDFsYb_QvGBMLH0-",
+              text: "I love the convenience of Tiedy. No more trips to the laundromat! Pickup and delivery are always on time, and the quality is excellent.",
+              img: OnosImg,
             },
             {
               name: "Emily L.",
               role: "Happy Customer",
-              text: "I was hesitant to try a laundry service, but Washr exceeded my expectations. The prices are reasonable, and the customer service is top-notch. Highly recommend!",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDbIh9gUOO8Pdlyaw9kaOCZZNn0sSEPZ6Z66_tQ7e_XK4P1F7Z08yWT4zWxqozdFs0puLjvkGogNIGcW3V5EuBlxX3gSUXMJu6qGtGhPLS5DerGcCywuomD5__AT5AFMLwyQ-3ZpJfnAiaKyUzptlSdoGFthMvCojqKDyxseOiIRmCqiBkrUq5X77CspmmwY_4x23IrJVv-cViPxIdiLwRmXcyndL2cw9Ej13Bslvkx_AfDN5L5S1VGbMVb1iQOwnlfS3-scaYLRprw",
+              text: "I was hesitant to try a laundry service, but Tiedy exceeded my expectations. The prices are reasonable, and the customer service is top-notch. Highly recommend!",
+              img: TiedyLogo,
             },
           ])
           .map((t, i) => (
@@ -564,7 +621,7 @@ export default function LandingPage() {
     {/* Brand */}
     <div className="footer-brand">
       <h4 className="footer-title text-white font-semibold mb-3">Tiedy</h4>
-      <p className="footer-desc">
+      <p className="footer-desc block text-[#06AED5] text-sm">
         On-demand laundry service. We pick up, wash, and deliver your laundry,
         so you can focus on what matters.
       </p>
@@ -574,9 +631,21 @@ export default function LandingPage() {
     <div className="footer-links">
       <h4 className="footer-title text-white font-semibold mb-3">Quick Links</h4>
       <ul className="space-y-2">
-        <li>Services</li>
-        <li>Pricing</li>
-        <li>How it works</li>
+       {/* How it Works */}
+    <a
+      href="#how-it-works"
+      
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">How It Works</li>
+    </a>
+
+    {/* Services */}
+    <a
+      href="#services"
+    
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">Services</li>
+    </a>
       </ul>
     </div>
 
@@ -584,21 +653,47 @@ export default function LandingPage() {
     <div className="footer-support">
       <h4 className="footer-title text-white font-semibold mb-3">Support</h4>
       <ul className="space-y-2">
-        <li>Contact Us</li>
-        <li>FAQs</li>
-        <li>Terms of Service</li>
-        <li>Privacy Policy</li>
-      </ul>
+    {/* Contact Us -> WhatsApp */}
+    <a
+      href="https://wa.me/+2347070277986"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">Contact Us</li>
+    </a>
+
+    {/* FAQ */}
+    <a
+      href="#faq"
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">FAQs</li>
+    </a>
+
+
+    <a
+      href="#terms"
+    
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">Terms of Service</li>
+    </a>
+
+    <a
+      href="#privacy"
+     
+    >
+      <li className="block text-[#06AED5] hover:text-[#0489a9] transition text-sm">Privacy Policy</li>
+    </a>
+  </ul>
     </div>
 
     {/* Social */}
     <div className="footer-social">
       <h4 className="footer-title text-white font-semibold mb-3">Connect with us</h4>
       <div className="footer-icons flex space-x-4">
-        <a className="text-gray-400 hover:text-white" href="#" aria-label="Instagram"><FaInstagram size={20} /></a>
-        <a className="text-gray-400 hover:text-white" href="#" aria-label="Twitter"><FaTwitter size={20} /></a>
-        <a className="text-gray-400 hover:text-white" href="mailto:hello@example.com" aria-label="Email"><HiOutlineMail size={20} /></a>
-        <a className="text-gray-400 hover:text-white" href="#" aria-label="WhatsApp"><FaWhatsapp size={20} /></a>
+        <a className="text-gray-400 hover:text-white" href="https://www.instagram.com/_tiedy?igsh=Mnh0eHUwMnVkNGN6&utm_source=qr" aria-label="Instagram"><FaInstagram size={20} className="block text-[#06AED5] hover:text-[#0489a9] transition" /></a>
+        <a className="text-gray-400 hover:text-white" href="https://x.com/tiedy_" aria-label="Twitter"><FaXTwitter className="block text-[#06AED5] hover:text-[#0489a9] transition" size={20} /></a>
+        <a className="text-gray-400 hover:text-white" href="tiedylogistics@gmail.com" aria-label="Email"><HiOutlineMail className="block text-[#06AED5] hover:text-[#0489a9] transition" size={20} /></a>
+        <a className="text-gray-400 hover:text-white" href="https://wa.me/+2347070277986" aria-label="WhatsApp"><FaWhatsapp className="block text-[#06AED5] hover:text-[#0489a9] transition" size={20} /></a>
       </div>
     </div>
   </div>
